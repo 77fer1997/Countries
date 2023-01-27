@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: auto;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.header {
+    margin: 0;
+    padding: 0 2rem 0 2rem;
+    font-family: 'Work Sans', sans-serif;
+    background-color: #fff;
+    color: #0c0c0c;
+}
+
+.footer {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    font-family: 'Work Sans', sans-serif;
+    background-color: #fff;
+}
+
+.textContent {
+    margin: 0;
+    padding: 1rem;
+}
+
+.icon {
+    margin: 0;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    width: 2rem;
+    cursor: pointer;
+}
