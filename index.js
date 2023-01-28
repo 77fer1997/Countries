@@ -63,11 +63,6 @@ class Content extends HTMLElement {
     }
 
     connectedCallback() {
-        function hola() {
-            const suma = 1 + 1;
-            console.log(suma)
-        }
-        console.log(typeof hola);
         this.htmlData()
     }
 
