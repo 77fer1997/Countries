@@ -13,11 +13,15 @@ let htmlData = `
 `
 
 const getData = async () => {
-    const res = await fetch('https://restcountries.com/v3.1/all')
-    if (res.status === 200) {
-        const data = await res.json()
-        const countries = data.slice(0, 12)
-        return countries
+    try {
+        const res = await fetch('https://restcountries.com/v3.1/all')
+        if (res.status === 200) {
+            const data = await res.json()
+            const countries = data.slice(0, 12)
+            return countries
+        }
+    } catch (error) {
+        console.log(error);
     }
 }
 const handleClick = (name, continente, officialName, subregion, capital, area, poblacion) => {
@@ -32,7 +36,6 @@ const handleClick = (name, continente, officialName, subregion, capital, area, p
     modal.setAttribute('poblacion', poblacion)
 }
 
-
 class Content extends HTMLElement {
     constructor() {
         super()
@@ -43,32 +46,17 @@ class Content extends HTMLElement {
         this.shadowRoot.appendChild(appPage.content.cloneNode(true))
         const modal = document.getElementById("modal")
     }
-
     htmlData = async () => {
         const countries = await getData()
         countries.map((value, index) => {
-            let name = value.name.common
-            let capital = value.capital
-            let population = value.population
-            let flag = value.flags.png
-            if (name === undefined) {
-                name = ""
-                console.warn(`No se encontro el nombre en el indice: ${index} de los datos recuperados`)
-            }
-            if (capital === undefined) {
-                capital = ""
-                console.warn(`No se encontro la capital de ${name} en el indice: ${index} de los datos recuperados`)
-            }
-            if (population === undefined) {
-                population = ""
-                console.warn(`No se encontro la poblacion de ${name} en el indice: ${index} de los datos recuperados`)
-            }
-            if (flag === undefined) {
-                flag = ""
-                console.warn(`No se encontro la imagen de ${name} en el indice: ${index} de los datos recuperados`)
-            }
-
-            htmlData += `<pais-element name='${name}' capital="${capital}" population="${population}" image="${flag}" onclick="handleClick('${name}', '${value.region}', '${value.name.official.replace("'", "")}', '${value.subregion}', '${capital}', '${value.area}', ${population});"></pais-element>`
+            let name = value.name.common || "-"
+            let capital = value.capital || "-";
+            let population = value.population || 0
+            let flag = value.flags.png || "-"
+            let region = value.region || "-"
+            let subregion = value.subregion || "-"
+            let area = value.area || "-"
+            htmlData += `<pais-element name='${name}' capital="${capital}" population="${population}" image="${flag}" region="${region}" subregion="${subregion}" area="${area}" oficial="${value.name.official.replace("'", "")} " > </pais-element>`
         })
         appPage.innerHTML = htmlData
         this.render()
