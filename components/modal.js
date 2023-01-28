@@ -72,7 +72,7 @@ class Modal extends HTMLElement {
         } else if (name === "official") {
             this.shadowRoot.querySelector(".officialName").innerHTML = newVal
         } else if (name === "continente") {
-            this.shadowRoot.querySelector(".continente").innerHTML = "Contiente: " + newVal
+            this.shadowRoot.querySelector(".continente").innerHTML = "Continente: " + newVal
         } else if (name === "subregion") {
             this.shadowRoot.querySelector(".subregion").innerHTML = "Sub-region: " + newVal
         } else if (name === "capital") {
