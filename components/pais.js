@@ -37,7 +37,6 @@ paisPage.innerHTML = `
         animation-duration: 2s;
         transition: all 0.3s ease-out;
         
-        
     }
     
     .card:hover  {
@@ -52,7 +51,11 @@ paisPage.innerHTML = `
         bottom: 0;
         right: 0;
         top:0;
+     
         
+    }
+    .card:hover .populationDiv {
+        color: white; 
     }
     
     @keyframes initialanimation{
@@ -92,7 +95,7 @@ paisPage.innerHTML = `
     }
 </style>
 <div id="card" class="card">
-    <h3 class="name"></h3>
+    <h3 onclick=${this.action} class="name"></h3>
     <p class="capital"></p>
     <div class="populationDiv">
         <img title="PeopleIcon" id="peopleIcon" class="peopleIcon" src="./icons/person-solid.svg">
@@ -109,7 +112,6 @@ class Pais extends HTMLElement {
         this.capital = ""
         this.population = ""
         this.image = ""
-
         this.attachShadow({ mode: "open" })
     }
 
@@ -122,6 +124,7 @@ class Pais extends HTMLElement {
     }
 
     connectedCallback() {
+        console.log(typeof this.action);
         this.render()
     }
 
@@ -138,7 +141,7 @@ class Pais extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['name', 'capital', 'population', 'image'];
+        return ['name', 'capital', 'population', 'image',];
     }
 }
 

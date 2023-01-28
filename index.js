@@ -6,6 +6,7 @@ let htmlData = `
     padding: 2rem;
     align-items: center;
     grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
     background-color: #F7F8FC;
 }
 </style>
@@ -19,7 +20,17 @@ const getData = async () => {
         return countries
     }
 }
-
+const handleClick = (name, continente, officialName, subregion, capital, area, poblacion) => {
+    const modal = document.getElementById("modal")
+    modal.style.display = 'flex'
+    modal.setAttribute('name', name)
+    modal.setAttribute('continente', continente)
+    modal.setAttribute('official', officialName)
+    modal.setAttribute('subregion', subregion)
+    modal.setAttribute('capital', capital)
+    modal.setAttribute('area', area)
+    modal.setAttribute('poblacion', poblacion)
+}
 
 
 class Content extends HTMLElement {
@@ -30,6 +41,7 @@ class Content extends HTMLElement {
 
     render() {
         this.shadowRoot.appendChild(appPage.content.cloneNode(true))
+        const modal = document.getElementById("modal")
     }
 
     htmlData = async () => {
@@ -63,6 +75,11 @@ class Content extends HTMLElement {
     }
 
     connectedCallback() {
+        function hola() {
+            const suma = 1 + 1;
+            console.log(suma)
+        }
+        console.log(typeof hola);
         this.htmlData()
     }
 
